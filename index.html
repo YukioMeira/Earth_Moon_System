@@ -29,7 +29,7 @@
 
 			// Criando uma câmera perspectiva
 			var camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 1, 1000);
-			camera.position.set(0, 0, 35);
+			camera.position.set(0, 0, 40);
 
 			// Criando Renderer e setando seu tamanho para o mesmo tamanho da janela
 			renderer = new THREE.WebGLRenderer({
@@ -86,11 +86,11 @@
 
 			// Criando geometria e material para as nuvens
 			// Criação de uma esfera um pouco maior que a da terra para que as nuvens fiquem sobre a terra
-			var cloudGeometry = new THREE.SphereGeometry(10.3, 50, 50);
+			var cloudGeometry = new THREE.SphereGeometry(10.2, 50, 50);
 			var cloudMaterial = new THREE.MeshPhongMaterial({
 				map: new THREE.ImageUtils.loadTexture("textures/cloud_combined_2048.jpg"),
 				transparent: true, // Adiciona transparência à camada de nuvens para não encobrir a camada da terra
-				opacity: 0.1});
+				opacity: 0.3});
 			var clouds = new THREE.Mesh(cloudGeometry, cloudMaterial);
 			scene.add(clouds);
 
@@ -109,7 +109,7 @@
 			scene.add(starField);
 
 			// Criando e adicionando geometria e material da Lua
-			var moonGeometry = new THREE.SphereGeometry(2, 50, 50);
+			var moonGeometry = new THREE.SphereGeometry(2.7, 50, 50);
 			var moonMaterial = new THREE.MeshPhongMaterial({
 				map: new THREE.ImageUtils.loadTexture("textures/2k_moon.jpg"),
 			});
@@ -123,14 +123,14 @@
       // Para criar a órbita da lua em torno da terra, calculamos a órbita em coordenadas polares e
       // e convertemos para coordenadas cartesianas para setar a posição do objeto
 
-      var r = 30;
+      var r = 100;
       var teta = 0;
-      var dTeta = 2 * Math.PI / 200; // Controla o período da Lua no incremento
+      var dTeta = 2 * Math.PI /2000; // Controla o período da Lua no incremento
 
       var render = function(){
         // Adicionando rotação à terra no eixo Y
-        earth.rotation.y -= .005;
-        clouds.rotation.y -= .0005;
+        earth.rotation.y -= .0009;
+        clouds.rotation.y -= .00005;
 
 
         // Incrementa teta e atualiza o x e o z da Lua
